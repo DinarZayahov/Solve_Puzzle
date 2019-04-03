@@ -1,0 +1,10 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <UnityWSASolutionName>Solve_Puzzle</UnityWSASolutionName>
+        <UnityWSASolutionDir>C:\Users\dinar\OneDrive\Рабочий стол\GitHub\Solve_Puzzle\New_App\</UnityWSASolutionDir>
+        <UnityProjectDir>C:\Users\dinar\OneDrive\Рабочий стол\GitHub\Solve_Puzzle\</UnityProjectDir>
+        <UnityWSAPlayerDir>C:\Program Files\Unity\Editor\Data\PlaybackEngines\MetroSupport\</UnityWSAPlayerDir>
+        <UnityWSAToolsDir>$(UnityWSASolutionDir)Unity\Tools\</UnityWSAToolsDir>
+        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    </PropertyGroup>
+</Project>

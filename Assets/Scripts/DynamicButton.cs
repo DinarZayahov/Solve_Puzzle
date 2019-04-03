@@ -56,7 +56,7 @@ public class DynamicButton : MonoBehaviour {
         {
             z = true;
         }
-        if (x && y && z) {
+        if (x && y && z && !Intersections()) {
             return true;
         }
         return false;
@@ -70,8 +70,6 @@ public class DynamicButton : MonoBehaviour {
         diagonal_point.x = obj.transform.position.x + half_of_width;
         diagonal_point.z = obj.transform.position.z + half_of_length;
         diagonal_point.y = obj.transform.position.y + half_of_height;
-        //double square_of_dist_to_edge = Math.Pow(half_of_width, 2.0)+Math.Pow(half_of_length, 2.0);
-        //double dist_to_point = Math.Pow(half_of_height, 2.0)+square_of_dist_to_edge
         return diagonal_point;
     }
 
@@ -87,4 +85,21 @@ public class DynamicButton : MonoBehaviour {
         return diagonal_point;
     }
 
+    public bool Intersections() {
+        bool intersects = false;
+        Collider[] colliders = new Collider[objects.Length];
+        for (int i=0; i<objects.Length; i++) {
+            Collider collider_1 = objects[i].GetComponent<Collider>();
+            for (int j=i+1; j<objects.Length; j++) {
+                Collider collider_2 = objects[j].GetComponent<Collider>();
+                if (collider_1.bounds.Intersects(collider_2.bounds)) {
+                    intersects = true;
+                }
+            }
+        }
+        if (intersects) {
+            return true;
+        }
+        return false;
+    }
 }
