@@ -9,6 +9,7 @@ public class BoxTransformer : MonoBehaviour {
 
 	public Transform shape;
 
+    // Arrays of buttons
     [Tooltip("4 buttons from top in clockwise direction")]
     public GameObject[] face_buttons = new GameObject[4];
     public GameObject[] right_buttons = new GameObject[4];
@@ -19,7 +20,10 @@ public class BoxTransformer : MonoBehaviour {
 
     [ContextMenu("Fire")]
 	public void Fire(){
+
 		shape.localScale = new Vector3(x,y,z);
+
+        // Setting positions of buttons:
 
         face_buttons[0].transform.localPosition = new Vector3(0, y / 2 - 0.01f, -z / 2);
         face_buttons[1].transform.localPosition = new Vector3(x / 2 - 0.01f, 0, -z / 2);
@@ -50,6 +54,8 @@ public class BoxTransformer : MonoBehaviour {
         top_buttons[1].transform.localPosition = new Vector3(x / 2 - 0.01f, -y / 2, 0);
         top_buttons[2].transform.localPosition = new Vector3(0, - y / 2, z / 2 - 0.01f);
         top_buttons[3].transform.localPosition = new Vector3(-(x / 2 - 0.01f), - y / 2, 0);
+
+        // Setting the rotations of buttons:
 
         face_buttons[0].transform.localRotation = Quaternion.Euler(0, 0, 0);
         face_buttons[1].transform.localRotation = Quaternion.Euler(0, 0, -90);
