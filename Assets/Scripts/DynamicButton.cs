@@ -49,12 +49,12 @@ public class DynamicButton : MonoBehaviour {
         float error = 0.02f;
 
         // Boundaries of box (with error):
-        float x_l = box.transform.position.x - 0.1f - error;
-        float x_r = box.transform.position.x + 0.1f + error;
-        float y_u = box.transform.position.y + 0.1f + error;
-        float y_d = box.transform.position.y - 0.1f - error;
-        float z_f = box.transform.position.z - 0.1f - error;
-        float z_b = box.transform.position.z + 0.1f + error;
+        float x_l = box.transform.position.x - 0.2f - error;
+        float x_r = box.transform.position.x + 0.2f + error;
+        float y_u = box.transform.position.y + 0.2f + error;
+        float y_d = box.transform.position.y - 0.2f - error;
+        float z_f = box.transform.position.z - 0.2f - error;
+        float z_b = box.transform.position.z + 0.2f + error;
 
         // Coordinates of endpoints of the diagonal
         float x1 = get_diagonal_point(obj).x;
