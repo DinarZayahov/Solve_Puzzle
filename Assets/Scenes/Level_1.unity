@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -485,7 +485,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hostTransform: {fileID: 1206112956}
-  obj: {fileID: 1206112954}
   boundingBoxPrefab: {fileID: 0}
   manipulationMode: 5
   rotationConstraint: 0
@@ -2855,32 +2854,32 @@ Prefab:
     - target: {fileID: 114177655703409188, guid: 7325e05d06f66df43ab6d098ca4f94fb,
         type: 2}
       propertyPath: AnimActions.Array.data[0].InvalidParam
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114177655703409188, guid: 7325e05d06f66df43ab6d098ca4f94fb,
         type: 2}
       propertyPath: AnimActions.Array.data[1].InvalidParam
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114177655703409188, guid: 7325e05d06f66df43ab6d098ca4f94fb,
         type: 2}
       propertyPath: AnimActions.Array.data[2].InvalidParam
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114177655703409188, guid: 7325e05d06f66df43ab6d098ca4f94fb,
         type: 2}
       propertyPath: AnimActions.Array.data[3].InvalidParam
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114177655703409188, guid: 7325e05d06f66df43ab6d098ca4f94fb,
         type: 2}
       propertyPath: AnimActions.Array.data[4].InvalidParam
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114177655703409188, guid: 7325e05d06f66df43ab6d098ca4f94fb,
         type: 2}
       propertyPath: AnimActions.Array.data[5].InvalidParam
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1883107351817058, guid: 7325e05d06f66df43ab6d098ca4f94fb, type: 2}
       propertyPath: m_IsActive
@@ -6335,11 +6334,6 @@ Transform:
   m_Father: {fileID: 251484115}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1206112954 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1577161917037936, guid: b786c2acb90b3744b887be1dd4d9123f,
-    type: 2}
-  m_PrefabInternal: {fileID: 1883243943}
 --- !u!4 &1206112956 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4340413981388640, guid: b786c2acb90b3744b887be1dd4d9123f,
@@ -6603,7 +6597,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hostTransform: {fileID: 1137608584}
-  obj: {fileID: 1137608582}
   boundingBoxPrefab: {fileID: 0}
   manipulationMode: 5
   rotationConstraint: 0
@@ -7604,7 +7597,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hostTransform: {fileID: 247765294}
-  obj: {fileID: 247765293}
   boundingBoxPrefab: {fileID: 0}
   manipulationMode: 5
   rotationConstraint: 0
@@ -9990,7 +9982,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hostTransform: {fileID: 1028781195}
-  obj: {fileID: 1028781193}
   boundingBoxPrefab: {fileID: 0}
   manipulationMode: 5
   rotationConstraint: 0

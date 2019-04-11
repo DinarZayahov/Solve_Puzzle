@@ -22,9 +22,6 @@ namespace HoloToolkit.Unity.InputModule.Utilities.Interactions
         [Tooltip("Transform that will be dragged. Defaults to the object of the component.")]
         private Transform hostTransform = null;
 
-        // Object of Two Hand Manipulations
-        public GameObject obj;
-
         public Transform HostTransform
         {
             get { return hostTransform; }
@@ -421,12 +418,12 @@ namespace HoloToolkit.Unity.InputModule.Utilities.Interactions
         {
 
             // Take separately angles of obj
-            float angle_x = obj.transform.rotation.x;
-            float angle_y = obj.transform.rotation.y;
-            float angle_z = obj.transform.rotation.z;
+            float angle_x = HostTransform.rotation.eulerAngles.x;
+            float angle_y = HostTransform.rotation.eulerAngles.y;
+            float angle_z = HostTransform.rotation.eulerAngles.z;
 
             // Array "angles" of this angles
-            float[] angles = { angle_x, angle_y, angle_y };
+            float[] angles = { angle_x, angle_y, angle_z };
 
             // For every angle in array
             for (int i=0; i<3; i++) {
@@ -446,10 +443,12 @@ namespace HoloToolkit.Unity.InputModule.Utilities.Interactions
             }
 
             // Set new angles to "obj"
-            obj.transform.rotation = Quaternion.Euler(angle_x, angle_y, angle_z);
+            HostTransform.rotation = Quaternion.Euler(angles[0], angles[1], angles[2]);
 
             // Round the coordinates of "obj" up to 2 digits after comma
-            obj.transform.position = new Vector3(((float)(int)(obj.transform.position.x * 100)) / 100, ((float)(int)(obj.transform.position.y * 100)) / 100, ((float)(int)(obj.transform.position.z * 100)) / 100);
+            HostTransform.position = new Vector3(((float)(int)(HostTransform.transform.position.x * 200)) / 200,
+                ((float)(int)(HostTransform.transform.position.y * 200)) / 200,
+                ((float)(int)(HostTransform.transform.position.z * 200)) / 200);
 
             InputManager.Instance.PopModalInputHandler();
 
