@@ -9,6 +9,7 @@ public class BoxTransformer : MonoBehaviour {
 
 	public Transform shape;
 
+
     // Arrays of buttons
     [Tooltip("4 buttons from top in clockwise direction")]
     public GameObject[] face_buttons = new GameObject[4];

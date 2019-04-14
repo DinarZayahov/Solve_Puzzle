@@ -46,7 +46,7 @@ public class DynamicButton : MonoBehaviour {
 
     public bool InBox(GameObject obj) {
 
-        float error = 0.02f;
+        float error = 0.04f;
 
         // Boundaries of box (with error):
         float x_l = box.transform.position.x - 0.2f - error;
