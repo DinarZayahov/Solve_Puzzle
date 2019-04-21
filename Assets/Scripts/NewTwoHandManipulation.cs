@@ -446,9 +446,27 @@ namespace HoloToolkit.Unity.InputModule.Utilities.Interactions
             HostTransform.rotation = Quaternion.Euler(angles[0], angles[1], angles[2]);
 
             // Round the coordinates of "obj" up to 2 digits after comma
-            HostTransform.position = new Vector3(((float)(int)(HostTransform.transform.position.x * 200)) / 200,
-                ((float)(int)(HostTransform.transform.position.y * 200)) / 200,
-                ((float)(int)(HostTransform.transform.position.z * 200)) / 200);
+            float initial_x = HostTransform.transform.position.x;
+            Debug.Log(initial_x.ToString());
+            int n_x =(int) (initial_x * 100);
+            Debug.Log(n_x.ToString());
+            int ost_x = n_x % 5;
+            Debug.Log(ost_x.ToString());
+            float c_x = (5 - ost_x)/100f;
+            Debug.Log(c_x.ToString());
+
+            float initial_y = HostTransform.transform.position.y;
+            int n_y = (int)initial_y * 100;
+            int ost_y = n_y % 5;
+            float c_y = (5 - ost_y) / 100;
+
+            float initial_z = HostTransform.transform.position.z;
+            int n_z = (int)initial_z * 100;
+            int ost_z = n_z % 5;
+            float c_z = (5 - ost_z) / 100;
+            /* HostTransform.position = new Vector3(((float)(int)(HostTransform.transform.position.x*100))/100 + c_x,
+                ((float)(int)(hostTransform.transform.position.y * 100)) / 100 + c_y,
+                ((float)(int)(hostTransform.transform.position.z * 100)) / 100 + c_z); */
 
             InputManager.Instance.PopModalInputHandler();
 

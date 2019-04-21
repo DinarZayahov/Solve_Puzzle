@@ -6,91 +6,64 @@ using HoloToolkit.Unity;
 using System;
 using HoloToolkit.Examples.InteractiveElements;
 
-public class DynamicButton : MonoBehaviour {
+public class Next : MonoBehaviour
+{
 
-    // Main box where we should  put our objects
     public GameObject box;
 
-    // Non-complex objects
     public GameObject[] objects;
-
-    // Complex objects which contain several cubes
-    public GameObject[] complex_objects;
-
-    // Buttons that we need to hide and show
-    public GameObject[] buttons;
-
-    
+    public InteractiveButton[] buttons;
 
     void Start()
     {
 
         // Hide the button
-        foreach (GameObject o in buttons) {
-            o.gameObject.SetActive(false);
+        foreach (InteractiveButton but in buttons) {
+            but.gameObject.SetActive(false);
         }
-        //cofe.gameObject.SetActive(false);
-        pack();
-        Debug.Log("Number of elements"+list.Count.ToString());
-
+        
 
     }
 
-    List<GameObject> list = new List<GameObject>();
-
-    // Put every cubes (including the ones which inside of complex objects) to the List
-    void pack()
+    void Update()
     {
-        foreach (GameObject o in complex_objects)
-        {
-            foreach (Transform child in o.transform)
-            {
-                list.Add(child.gameObject);
-            }
-        }
-        foreach (GameObject o in objects)
-        {
-            list.Add(o);
-
-        }
-    }
-
-    void Update () {
 
         // Counter for number of objects in Box
         int number_in_box = 0;
 
         // Check that objects from array of objects are in Box
-        for (int i=0; i<list.Count; i++) {
-            if (InBox(list[i])==true)
+        for (int i = 0; i < objects.Length; i++)
+        {
+            if (InBox(objects[i]) == true)
             {
                 number_in_box++;
             }
         }
 
         // If all there, show button
-        if (number_in_box == list.Count)
+        if (number_in_box == objects.Length)
         {
-            foreach (GameObject o in buttons)
+            foreach (InteractiveButton but in buttons)
             {
-                o.gameObject.SetActive(true);
+                but.gameObject.SetActive(true);
             }
         }
         // Else hide it
-        else {
-            foreach (GameObject o in buttons)
+        else
+        {
+            foreach (InteractiveButton but in buttons)
             {
-                o.gameObject.SetActive(false);
+                but.gameObject.SetActive(false);
             }
         }
-	}
+    }
 
-
-    public bool InBox(GameObject obj) {
+    public bool InBox(GameObject obj)
+    {
 
         GameObject edge_of_box = GameObject.Find("Face");
         float scale = edge_of_box.transform.localScale.x;
-        float error = scale / 6;
+        float error = scale / 10;
         float offset = scale / 2 + error;
 
         // Boundaries of box (with error):
@@ -108,10 +81,11 @@ public class DynamicButton : MonoBehaviour {
         float x2 = get_opposite_diagonal_point(obj).x;
         float y2 = get_opposite_diagonal_point(obj).y;
         float z2 = get_opposite_diagonal_point(obj).z;
-        
+
         // If all coordinates are inside of boundaries and no intersections between objects, return true, else false
         bool x = false;
-        if (x1>=x_l && x1<=x_r && x2 >= x_l && x2 <= x_r) {
+        if (x1 >= x_l && x1 <= x_r && x2 >= x_l && x2 <= x_r)
+        {
             x = true;
         }
         bool y = false;
@@ -124,14 +98,16 @@ public class DynamicButton : MonoBehaviour {
         {
             z = true;
         }
-        if (x && y && z && !Intersections()) {
+        if (x && y && z && !Intersections())
+        {
             return true;
         }
         return false;
     }
 
     // Getting one endpoint of a diagonal
-    public Vector3 get_diagonal_point(GameObject obj) {
+    public Vector3 get_diagonal_point(GameObject obj)
+    {
         Vector3 diagonal_point = new Vector3(0, 0, 0);
         float half_of_width = obj.transform.lossyScale.x / 2;
         float half_of_length = obj.transform.lossyScale.z / 2;
@@ -156,19 +132,24 @@ public class DynamicButton : MonoBehaviour {
     }
 
     // Checking the intersection of colliders of objects
-    public bool Intersections() {
+    public bool Intersections()
+    {
         bool intersects = false;
-        Collider[] colliders = new Collider[list.Count];
-        for (int i=0; i<list.Count; i++) {
-            Collider collider_1 = list[i].GetComponent<Collider>();
-            for (int j=i+1; j<list.Count; j++) {
-                Collider collider_2 = list[j].GetComponent<Collider>();
-                if (collider_1.bounds.Intersects(collider_2.bounds)) {
+        Collider[] colliders = new Collider[objects.Length];
+        for (int i = 0; i < objects.Length; i++)
+        {
+            Collider collider_1 = objects[i].GetComponent<Collider>();
+            for (int j = i + 1; j < objects.Length; j++)
+            {
+                Collider collider_2 = objects[j].GetComponent<Collider>();
+                if (collider_1.bounds.Intersects(collider_2.bounds))
+                {
                     intersects = true;
                 }
             }
         }
-        if (intersects) {
+        if (intersects)
+        {
             return true;
         }
         return false;
