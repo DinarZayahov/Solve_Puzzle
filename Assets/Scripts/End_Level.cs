@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class End_Level : MonoBehaviour {
 
+    public GameObject scene;
+
     public GameObject box;
 
     public GameObject[] objects;
@@ -16,6 +18,15 @@ public class End_Level : MonoBehaviour {
     {
         if (indicator) {
             Move();
+        }
+        Func();
+    }
+
+    void Func()
+    {
+        if (scene.gameObject.active == false)
+        {
+            indicator = false;
         }
     }
 
