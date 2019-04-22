@@ -447,26 +447,22 @@ namespace HoloToolkit.Unity.InputModule.Utilities.Interactions
 
             // Round the coordinates of "obj" up to 2 digits after comma
             float initial_x = HostTransform.transform.position.x;
-            Debug.Log(initial_x.ToString());
-            int n_x =(int) (initial_x * 100);
-            Debug.Log(n_x.ToString());
-            int ost_x = n_x % 5;
-            Debug.Log(ost_x.ToString());
-            float c_x = (5 - ost_x)/100f;
-            Debug.Log(c_x.ToString());
+            float n_x = ((float)(int)(initial_x * 10)) / 10;
+            float ost_x = n_x% 0.2f;
+            float c_x = (0.2f - ost_x);
 
             float initial_y = HostTransform.transform.position.y;
-            int n_y = (int)initial_y * 100;
-            int ost_y = n_y % 5;
-            float c_y = (5 - ost_y) / 100;
+            float n_y = ((float)(int)(initial_y * 10)) / 10;
+            float ost_y = n_y % 0.2f;
+            float c_y = (0.2f - ost_y);
 
             float initial_z = HostTransform.transform.position.z;
-            int n_z = (int)initial_z * 100;
-            int ost_z = n_z % 5;
-            float c_z = (5 - ost_z) / 100;
-            /* HostTransform.position = new Vector3(((float)(int)(HostTransform.transform.position.x*100))/100 + c_x,
-                ((float)(int)(hostTransform.transform.position.y * 100)) / 100 + c_y,
-                ((float)(int)(hostTransform.transform.position.z * 100)) / 100 + c_z); */
+            float n_z =((float)(int)(initial_z * 10))/10;
+            float ost_z = n_z % 0.2f;
+            float c_z = (0.2f-ost_z);
+            HostTransform.position = new Vector3(((float)(int)(HostTransform.transform.position.x*10))/10 + c_x,
+                ((float)(int)(hostTransform.transform.position.y * 10)) / 10 + c_y,
+               ((float)(int)(hostTransform.transform.position.z * 10)) / 10 + c_z); 
 
             InputManager.Instance.PopModalInputHandler();
 

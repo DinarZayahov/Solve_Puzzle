@@ -40,6 +40,7 @@ public class End_Level : MonoBehaviour {
 
         objects[3].transform.position = Vector3.MoveTowards(objects[3].transform.position, new Vector3(x + s / 4, y + s / 4, z + s / 4), Time.deltaTime * speed);
         objects[3].transform.rotation = Quaternion.Euler(0, 0, 0);
+       
     }
 
 }
