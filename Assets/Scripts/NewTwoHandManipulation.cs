@@ -2,6 +2,7 @@
 // Licensed under the MIT License. See LICENSE in the project root for license information.
 
 using HoloToolkit.Unity.UX;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -446,23 +447,67 @@ namespace HoloToolkit.Unity.InputModule.Utilities.Interactions
             HostTransform.rotation = Quaternion.Euler(angles[0], angles[1], angles[2]);
 
             // Round the coordinates of "obj" up to 2 digits after comma
+            float round = 0.1f;
+            float half_of_round = 0.05f;
             float initial_x = HostTransform.transform.position.x;
-            float n_x = ((float)(int)(initial_x * 10)) / 10;
-            float ost_x = n_x% 0.2f;
-            float c_x = (0.2f - ost_x);
+            float ost_x = initial_x% round;
+            float pos_x = 0;
+            if (ost_x > half_of_round)
+            {
+                pos_x = initial_x + (round - ost_x);
+            }
+            else if (ost_x < half_of_round && ost_x > 0) {
+                pos_x = initial_x - ost_x;
+            }
+            else if (ost_x < 0 && ost_x > -half_of_round) {
+                pos_x = initial_x - ost_x;
+            }
+            else if (ost_x<-half_of_round) {
+                pos_x = initial_x - (round + ost_x);
+            }
 
             float initial_y = HostTransform.transform.position.y;
-            float n_y = ((float)(int)(initial_y * 10)) / 10;
-            float ost_y = n_y % 0.2f;
-            float c_y = (0.2f - ost_y);
+            float ost_y = initial_y % round;
+            float pos_y = 0;
+            if (ost_y > half_of_round)
+            {
+                pos_y = initial_y + (round - ost_y);
+            }
+            else if (ost_y < half_of_round && ost_y > 0)
+            {
+                pos_y = initial_y - ost_y;
+            }
+            else if (ost_y < 0 && ost_y > -half_of_round)
+            {
+                pos_y = initial_y - ost_y;
+            }
+            else if (ost_y < -half_of_round)
+            {
+                pos_y = initial_y - (round + ost_y);
+            }
+
 
             float initial_z = HostTransform.transform.position.z;
-            float n_z =((float)(int)(initial_z * 10))/10;
-            float ost_z = n_z % 0.2f;
-            float c_z = (0.2f-ost_z);
-            HostTransform.position = new Vector3(((float)(int)(HostTransform.transform.position.x*10))/10 + c_x,
-                ((float)(int)(hostTransform.transform.position.y * 10)) / 10 + c_y,
-               ((float)(int)(hostTransform.transform.position.z * 10)) / 10 + c_z); 
+            float ost_z = initial_z % round;
+            float pos_z = 0;
+            if (ost_z > half_of_round)
+            {
+                pos_z = initial_z + (round - ost_z);
+            }
+            else if (ost_z < half_of_round && ost_z > 0)
+            {
+                pos_z = initial_z - ost_z;
+            }
+            else if (ost_z < 0 && ost_z > -half_of_round)
+            {
+                pos_z = initial_z - ost_z;
+            }
+            else if (ost_z < -half_of_round)
+            {
+                pos_z = initial_z - (half_of_round + ost_z);
+            }
+            HostTransform.position = new Vector3(pos_x,
+                pos_y, pos_z); 
 
             InputManager.Instance.PopModalInputHandler();
 
