@@ -4,64 +4,133 @@ using UnityEngine;
 using UnityEngine.UI;
 using HoloToolkit.Unity;
 using System;
+using HoloToolkit.Examples.InteractiveElements;
 
 public class DynamicButton : MonoBehaviour {
 
+    // Main box where we should  put our objects
     public GameObject box;
 
+    // Non-complex objects
     public GameObject[] objects;
 
-    public HoloToolkit.Unity.Buttons.Button button;
+    // Complex objects which contain several cubes
+    public GameObject[] complex_objects;
 
-	void Start () {
-        button.gameObject.SetActive(false);
-	}
-	
-	void Update () {
+    // Buttons that we need to hide and show
+    public GameObject[] buttons;
+
+    
+
+    void Start()
+    {
+
+        // Hide the button
+        foreach (GameObject o in buttons) {
+            o.gameObject.SetActive(false);
+        }
+        //cofe.gameObject.SetActive(false);
+        pack();
+        Debug.Log("Number of elements"+list.Count.ToString());
+
+
+    }
+
+    List<GameObject> list = new List<GameObject>();
+
+    // Put every cubes (including the ones which inside of complex objects) to the List
+    void pack()
+    {
+        foreach (GameObject o in complex_objects)
+        {
+            foreach (Transform child in o.transform)
+            {
+                list.Add(child.gameObject);
+            }
+        }
+        foreach (GameObject o in objects)
+        {
+            list.Add(o);
+
+        }
+    }
+
+    void Update () {
+
+        // Counter for number of objects in Box
         int number_in_box = 0;
-        for (int i=0; i<objects.Length; i++) {
-            if (InBox(objects[i])==true)
+
+        // Check that objects from array of objects are in Box
+        for (int i=0; i<list.Count; i++) {
+            if (InBox(list[i])==true)
             {
                 number_in_box++;
             }
         }
-        if (number_in_box == objects.Length)
+
+        // If all there, show button
+        if (number_in_box == list.Count)
         {
-            button.gameObject.SetActive(true);
+            foreach (GameObject o in buttons)
+            {
+                o.gameObject.SetActive(true);
+            }
         }
+        // Else hide it
         else {
-            button.gameObject.SetActive(false);
+            foreach (GameObject o in buttons)
+            {
+                o.gameObject.SetActive(false);
+            }
         }
 	}
 
+
     public bool InBox(GameObject obj) {
+
+        GameObject edge_of_box = GameObject.Find("Face");
+        float scale = edge_of_box.transform.localScale.x;
+        float error = scale / 6;
+        float offset = scale / 2 + error;
+
+        // Boundaries of box (with error):
+        float x_l = box.transform.position.x - offset;
+        float x_r = box.transform.position.x + offset;
+        float y_u = box.transform.position.y + offset;
+        float y_d = box.transform.position.y - offset;
+        float z_f = box.transform.position.z - offset;
+        float z_b = box.transform.position.z + offset;
+
+        // Coordinates of endpoints of the diagonal
         float x1 = get_diagonal_point(obj).x;
         float y1 = get_diagonal_point(obj).y;
         float z1 = get_diagonal_point(obj).z;
         float x2 = get_opposite_diagonal_point(obj).x;
         float y2 = get_opposite_diagonal_point(obj).y;
         float z2 = get_opposite_diagonal_point(obj).z;
-        float error = 0.02f;
+        
+        // If all coordinates are inside of boundaries and no intersections between objects, return true, else false
         bool x = false;
-        if (x1>=-0.25f-error && x1<=-0.05f+error && x2 >= -0.25f-error && x2 <= -0.05f+error) {
+        if (x1>=x_l && x1<=x_r && x2 >= x_l && x2 <= x_r) {
             x = true;
         }
         bool y = false;
-        if (y1 >= -0.1f - error && y1 <= 0.1f + error && y2 >= -0.1f - error && y2 <= 0.1f + error)
+        if (y1 >= y_d && y1 <= y_u && y2 >= y_d && y2 <= y_u)
         {
             y = true;
         }
         bool z = false;
-        if (z1 >= 1.4f - error && z1 <= 1.6f + error && z2 >= 1.4f - error && z2 <= 1.6f + error)
+        if (z1 >= z_f && z1 <= z_b && z2 >= z_f && z2 <= z_b)
         {
             z = true;
         }
-        if (x && y && z) {
+        if (x && y && z && !Intersections()) {
             return true;
         }
         return false;
     }
 
+    // Getting one endpoint of a diagonal
     public Vector3 get_diagonal_point(GameObject obj) {
         Vector3 diagonal_point = new Vector3(0, 0, 0);
         float half_of_width = obj.transform.lossyScale.x / 2;
@@ -70,11 +139,10 @@ public class DynamicButton : MonoBehaviour {
         diagonal_point.x = obj.transform.position.x + half_of_width;
         diagonal_point.z = obj.transform.position.z + half_of_length;
         diagonal_point.y = obj.transform.position.y + half_of_height;
-        //double square_of_dist_to_edge = Math.Pow(half_of_width, 2.0)+Math.Pow(half_of_length, 2.0);
-        //double dist_to_point = Math.Pow(half_of_height, 2.0)+square_of_dist_to_edge
         return diagonal_point;
     }
 
+    // Getting another endpoint of a diagonal
     public Vector3 get_opposite_diagonal_point(GameObject obj)
     {
         Vector3 diagonal_point = new Vector3(0, 0, 0);
@@ -87,4 +155,22 @@ public class DynamicButton : MonoBehaviour {
         return diagonal_point;
     }
 
+    // Checking the intersection of colliders of objects
+    public bool Intersections() {
+        bool intersects = false;
+        Collider[] colliders = new Collider[list.Count];
+        for (int i=0; i<list.Count; i++) {
+            Collider collider_1 = list[i].GetComponent<Collider>();
+            for (int j=i+1; j<list.Count; j++) {
+                Collider collider_2 = list[j].GetComponent<Collider>();
+                if (collider_1.bounds.Intersects(collider_2.bounds)) {
+                    intersects = true;
+                }
+            }
+        }
+        if (intersects) {
+            return true;
+        }
+        return false;
+    }
 }

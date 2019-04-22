@@ -553,18 +553,19 @@ PlayerSettings:
   webGLUseEmbeddedResources: 0
   webGLUseWasm: 0
   webGLCompressionFormat: 1
-  scriptingDefineSymbols: {}
+  scriptingDefineSymbols:
+    14: 
   platformArchitecture: {}
   scriptingBackend:
     Metro: 2
   incrementalIl2cppBuild: {}
   additionalIl2CppArgs: 
-  scriptingRuntimeVersion: 0
+  scriptingRuntimeVersion: 1
   apiCompatibilityLevelPerPlatform: {}
   m_RenderingPath: 1
   m_MobileRenderingPath: 1
   metroPackageName: SolvePuzzle
-  metroPackageVersion: 1.0.0.0
+  metroPackageVersion: 1.0.2.0
   metroCertificatePath: Assets\WSATestCertificate.pfx
   metroCertificatePassword: 
   metroCertificateSubject: DefaultCompany
@@ -572,7 +573,7 @@ PlayerSettings:
   metroCertificateNotAfter: 00611ce1ac03d601
   metroApplicationDescription: Solve_Puzzle
   wsaImages: {}
-  metroTileShortName: 
+  metroTileShortName: Solve_Puzzle
   metroCommandLineArgsFile: 
   metroTileShowName: 0
   metroMediumTileShowName: 0
@@ -592,7 +593,7 @@ PlayerSettings:
       Chat: False
       CodeGeneration: False
       EnterpriseAuthentication: False
-      HumanInterfaceDevice: False
+      HumanInterfaceDevice: True
       InputInjectionBrokered: False
       InternetClient: False
       InternetClientServer: False
@@ -665,7 +666,7 @@ PlayerSettings:
   cloudServicesEnabled:
     UNet: 1
   facebookSdkVersion: 7.9.4
-  apiCompatibilityLevel: 2
+  apiCompatibilityLevel: 3
   cloudProjectId: 532020b2-c295-4838-869c-f9f7c6f401ef
   projectName: Solve_Puzzle
   organizationId: zayahovdinar
