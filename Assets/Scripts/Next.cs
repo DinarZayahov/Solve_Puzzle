@@ -63,7 +63,7 @@ public class Next : MonoBehaviour
 
         GameObject edge_of_box = GameObject.Find("Face");
         float scale = edge_of_box.transform.localScale.x;
-        float error = scale / 50;
+        float error = scale/5;
         float offset = scale / 2 + error;
 
         // Boundaries of box (with error):
@@ -109,12 +109,15 @@ public class Next : MonoBehaviour
     public Vector3 get_diagonal_point(GameObject obj)
     {
         Vector3 diagonal_point = new Vector3(0, 0, 0);
-        float half_of_width = obj.transform.lossyScale.x / 2;
-        float half_of_length = obj.transform.lossyScale.y / 2;
-        float half_of_height = obj.transform.lossyScale.z / 2;
-        diagonal_point.x = obj.transform.position.x + half_of_width;
-        diagonal_point.y = obj.transform.position.y + half_of_length;
-        diagonal_point.z = obj.transform.position.z + half_of_height;
+        //float half_of_width = obj.transform.lossyScale.x / 2;
+        //float half_of_length = obj.transform.lossyScale.y / 2;
+        //float half_of_height = obj.transform.localScale.z / 2;
+        float x = obj.GetComponent<Renderer>().bounds.extents.x;
+        float y = obj.GetComponent<Renderer>().bounds.extents.y;
+        float z = obj.GetComponent<Renderer>().bounds.extents.z;
+        diagonal_point.x = obj.transform.position.x + x;
+        diagonal_point.y = obj.transform.position.y + y;
+        diagonal_point.z = obj.transform.position.z + z;
         return diagonal_point;
     }
 
@@ -122,12 +125,15 @@ public class Next : MonoBehaviour
     public Vector3 get_opposite_diagonal_point(GameObject obj)
     {
         Vector3 diagonal_point = new Vector3(0, 0, 0);
-        float half_of_width = obj.transform.lossyScale.x / 2;
-        float half_of_length = obj.transform.lossyScale.y / 2;
-        float half_of_height = obj.transform.lossyScale.z / 2;
-        diagonal_point.x = obj.transform.position.x - half_of_width;
-        diagonal_point.y = obj.transform.position.y - half_of_length;
-        diagonal_point.z = obj.transform.position.z - half_of_height;
+        //float half_of_width = obj.transform.lossyScale.x / 2;
+        //float half_of_length = obj.transform.lossyScale.y / 2;
+        //float half_of_height = obj.transform.lossyScale.z / 2;
+        float x = obj.GetComponent<Renderer>().bounds.extents.x;
+        float y = obj.GetComponent<Renderer>().bounds.extents.y;
+        float z = obj.GetComponent<Renderer>().bounds.extents.z;
+        diagonal_point.x = obj.transform.position.x - x;
+        diagonal_point.y = obj.transform.position.y - y;
+        diagonal_point.z = obj.transform.position.z - z;
         return diagonal_point;
     }
 
