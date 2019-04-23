@@ -1,10 +1,12 @@
-﻿using System.Collections;
+﻿using HoloToolkit.Examples.InteractiveElements;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class End_Level : MonoBehaviour {
 
-    public GameObject scene;
+    //public GameObject scene;
+    public InteractiveButton b;
 
     public GameObject box;
 
@@ -24,7 +26,7 @@ public class End_Level : MonoBehaviour {
 
     void Func()
     {
-        if (scene.gameObject.active == false)
+        if (b.gameObject.activeSelf == true)
         {
             indicator = false;
         }

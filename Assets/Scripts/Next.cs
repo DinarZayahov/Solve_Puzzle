@@ -63,7 +63,7 @@ public class Next : MonoBehaviour
 
         GameObject edge_of_box = GameObject.Find("Face");
         float scale = edge_of_box.transform.localScale.x;
-        float error = scale / 10;
+        float error = scale / 50;
         float offset = scale / 2 + error;
 
         // Boundaries of box (with error):
@@ -110,11 +110,11 @@ public class Next : MonoBehaviour
     {
         Vector3 diagonal_point = new Vector3(0, 0, 0);
         float half_of_width = obj.transform.lossyScale.x / 2;
-        float half_of_length = obj.transform.lossyScale.z / 2;
-        float half_of_height = obj.transform.lossyScale.y / 2;
+        float half_of_length = obj.transform.lossyScale.y / 2;
+        float half_of_height = obj.transform.lossyScale.z / 2;
         diagonal_point.x = obj.transform.position.x + half_of_width;
-        diagonal_point.z = obj.transform.position.z + half_of_length;
-        diagonal_point.y = obj.transform.position.y + half_of_height;
+        diagonal_point.y = obj.transform.position.y + half_of_length;
+        diagonal_point.z = obj.transform.position.z + half_of_height;
         return diagonal_point;
     }
 
@@ -123,11 +123,11 @@ public class Next : MonoBehaviour
     {
         Vector3 diagonal_point = new Vector3(0, 0, 0);
         float half_of_width = obj.transform.lossyScale.x / 2;
-        float half_of_length = obj.transform.lossyScale.z / 2;
-        float half_of_height = obj.transform.lossyScale.y / 2;
+        float half_of_length = obj.transform.lossyScale.y / 2;
+        float half_of_height = obj.transform.lossyScale.z / 2;
         diagonal_point.x = obj.transform.position.x - half_of_width;
-        diagonal_point.z = obj.transform.position.z - half_of_length;
-        diagonal_point.y = obj.transform.position.y - half_of_height;
+        diagonal_point.y = obj.transform.position.y - half_of_length;
+        diagonal_point.z = obj.transform.position.z - half_of_height;
         return diagonal_point;
     }
 

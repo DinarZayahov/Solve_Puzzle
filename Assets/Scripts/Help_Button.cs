@@ -1,9 +1,12 @@
-﻿using System.Collections;
+﻿using HoloToolkit.Examples.InteractiveElements;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Help_Button : MonoBehaviour
 {
+
+    public InteractiveButton b;
 
     public GameObject box;
 
@@ -19,6 +22,16 @@ public class Help_Button : MonoBehaviour
         if (indicator)
         {
             Move();
+        }
+        Func();
+    }
+
+
+    void Func()
+    {
+        if (b.gameObject.activeSelf == true)
+        {
+            indicator = false;
         }
     }
 
