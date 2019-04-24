@@ -63,7 +63,7 @@ public class Next : MonoBehaviour
 
         GameObject edge_of_box = GameObject.Find("Face");
         float scale = edge_of_box.transform.localScale.x;
-        float error = scale/5;
+        float error = scale/20;
         float offset = scale / 2 + error;
 
         // Boundaries of box (with error):
