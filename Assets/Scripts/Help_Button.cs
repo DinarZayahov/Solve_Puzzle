@@ -49,14 +49,15 @@ public class Help_Button : MonoBehaviour
         float s = face.transform.localScale.x;
         
             objects[0].transform.position = Vector3.MoveTowards(objects[0].transform.position, new Vector3(x, y - s / 4, z), Time.deltaTime * speed);
+        objects[0].transform.rotation = Quaternion.Euler(0, 0, 0);
 
-            objects[1].transform.position = Vector3.MoveTowards(objects[1].transform.position, new Vector3(x - s / 4, y + s / 4, z), Time.deltaTime * speed);
-            
-
-        
+        objects[1].transform.position = Vector3.MoveTowards(objects[1].transform.position, new Vector3(x - s / 4, y + s / 4, z), Time.deltaTime * speed);
+        objects[1].transform.rotation = Quaternion.Euler(0, 0, 0);
 
 
-        
+
+
+
     }
 
 }
